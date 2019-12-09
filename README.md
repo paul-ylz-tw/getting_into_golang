@@ -15,8 +15,8 @@ The documentation is lean and it is worthwhile going through at least:
 ## Essentials
 - The function named `main` inside the package named `main` will always be the entrypoint of your program. You cannot have multiple entrypoints in a project.
 - A `package` is a logical group of code. It is possible for multiple files to make up a package.
-- [ ] "Exporting" names is the equivalent of making a thing public in OO languages. In Golang, names are exported by using uppercase, e.g. `pi` (not exported), `Pi` (exported). Exporting is required to use functions from another `package`. [see code](https://tour.golang.org/basics/3)
-- In practice, although Arrays exist, we only use [Slices](https://tour.golang.org/moretypes/7), because they are a more useful than arrays. (Slices are list abstractions that are backed by Arrays)
+- "Exporting" names is the equivalent of making a thing public in OO languages. In Golang, names are exported by using uppercase, e.g. `pi` (not exported), `Pi` (exported). Exporting is required to use functions from another `package`. [see code](https://tour.golang.org/basics/3)
+- In practice, although arrays exist, we only use [Slices](https://tour.golang.org/moretypes/7), because they are a more useful than arrays. (Slices are list abstractions that are backed by Arrays)
 - When iterating over lists, Go provides the `for range` loop. There are different forms of this type of loop which imply different semantics. Considering how often we will do this, it is worth noting the subtleties outlined in this blog post: [For range semantics](https://www.ardanlabs.com/blog/2017/06/for-range-semantics.html)
 
 ## IDE Choice
