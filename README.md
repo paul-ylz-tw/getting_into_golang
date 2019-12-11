@@ -24,6 +24,7 @@ The documentation is lean and it is worthwhile going through at least:
   * There's no such thing as a class. There are only structs. [ref Go by Example: Structs](https://gobyexample.com/structs)
   * You can write functions with a receiver, making them "methods", thus emulating an OOP-ish pattern. However, this is generally frowned upon. It's helpful to refer to the guidelines compiled from the [CodeReviewComments repo](https://github.com/golang/go/wiki/CodeReviewComments#receiver-type) about this.
   * Generally, simpler patterns emerge from using functions instead of methods in Go.
+  * If Golang is not OO, how is it oriented? Generally the program is oriented around *data*. In fact, the whole language is geared towards how to organize data into Arrays (because they are the most efficient data structure) and getting the data within closest reach of the CPU (L1 / L2 cache) as possible, which is major factor for Golang's amazing speed.
 - Return `error` from every function and check/handle it from the caller [ref Error handling and Go](https://blog.golang.org/error-handling-and-go). Generally you would not `panic`, which is like throwing an exception.
 
 ## Editor Choice
@@ -38,13 +39,33 @@ The Go tool set includes formatters, linters and documentation lookup features a
 ### Package management
 This is one of the rapidly changing areas in Golang. The legacy tools in this area are: `govendor` and `dep`. Moving forwards, use [Go Modules](https://github.com/golang/go/wiki/Modules)
 
-
 ### Code style
 - Leave formatting to `gofmt`
 - Short variable names, e.g. `w` for widget and `ws` for widgets
 - Large files are ok, like Linux source code.
 - The file containing package `main` and function `main` does not need to be called `main.go`, it's ok to be called `app.go` for example.
   * It's idiomatic to put this file inside a subdirectory called `cmd`.
+
+
+### Web applications in Go
+Time to make the jump from hello-world type Go to application Go. I recommend starting with the [official doc on Go web applications](https://golang.org/doc/articles/wiki/), it's a bit long but the concepts are the same, whichever framework one chooses.
+Since most frameworks depend heavily on the language's own features and the `net/http` package (part of the Go standard library), an understanding of the baseline approach is most useful.
+
+From there, you can check out one of the most popular and fastest Golang webserver frameworks out there, [Gin](https://github.com/gin-gonic/gin), to see how the community has evolved towards.
+
+#### Organization
+Reading through the [Standard Package Layout](https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1) is very helpful towards thinking about how to organize a Go program, or perhaps any other non OO program. It is something you will probably want to read more than once.
+
+#### Validation
+Whether its DB model validation or DTO contract validation, most will rely on the baked in `validator` package (now in [v10](https://godoc.org/gopkg.in/go-playground/validator.v10)).
+
+#### Templating
+Templating needs are pretty well satisfied by the standard library, as most things are! See [package `text/template`](https://golang.org/pkg/text/template/)
+
+#### Migrations
+See [golang-migrate](https://github.com/golang-migrate/migrate), which is where the community has converged as well. Generally kept outside of application runtime and fired manually from a shell. Raw SQL FTW!
+
+
 ## Important Blogs
 - [Official blog](https://blog.golang.org/)
 - [Dave Cheney](https://dave.cheney.net/practical-go)
